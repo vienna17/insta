@@ -1,10 +1,11 @@
 from instaloader import Profile,Instaloader
 from time import sleep
-
+import getpass
 
 
 # instância do Instaloader
 L = Instaloader()
+
 # loop
 while True:
 
@@ -28,7 +29,7 @@ while True:
         except FileNotFoundError:
             print('Erro: Não foi possível encontrar o login.')
 
-            PASS = str(input('senha:')).strip()
+            PASS = getpass.getpass('senha:').strip()
             L.login(USER,PASS)
             L.save_session_to_file()
 
