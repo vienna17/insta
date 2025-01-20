@@ -16,18 +16,63 @@ while True:
 
 ''')
     opecion = int(input('Escolha uma opção:'))
+    
     # opção 1
     if opecion == 1:
         USER = str(input('nome de usuário:')).strip().lower()
-        PASS = str(input('senha:'))
-
-        L.login(USER,PASS)
-        print('logado com sucesso!')
-
-    # carregar o perfil; todas as informações ; buscar os seguidores...
+        
+        try:
+            L.load_session_from_file(USER)
+            print(f'Ben-vindo,{USER}!')
     
-    else:
-        pass
+        except FileNotFoundError:
+            print('Erro: Não foi possível encontrar o login.')
+
+            PASS = str(input('senha:')).strip()
+            L.login(USER,PASS)
+            L.save_session_to_file()
+
+    # MENU
+        print(''' ========== INSTAGRAM INFO ==========
+        [1] - listar seguidores
+        [2] - Informações do perfil 
+        [3] - Sair do programar
+        
+        ''')
+        opecion = int(input('Escolha uma opção:'))
+
+        #if opecion == 1:
+        
+    # FUNCIONANDO
+        if opecion == 2:
+            USERNAME = str(input('nome do usuário alvo: ')).strip().lower()
+            profile = Profile.from_username(L.context, USERNAME)
+            ID = profile.userid
+
+    # get_info
+            BIO = profile.biography
+            FOLLOWERS = profile.followers
+            FOLLOWING = profile.followees
+            POSTS = profile.mediacount
+            PRIVATE = profile.is_private
+            URL = profile.get_profile_pic_url()
+
+         # print_info
+            sleep(2)
+            print(
+            '\nID:',ID,
+            '\nURL:',URL,
+            '\nPRIVATE:',PRIVATE,
+            '\nBIO:',BIO,
+            '\nFOLLOWERS:',FOLLOWERS,
+            '\nFOLLOWING:',FOLLOWING,
+            '\nPOSTS:',POSTS)
+        
+        
+        
+        #else: 
+           # print('Saindo...')
+            #break
     
     # opção 2
     if opecion == 2:
