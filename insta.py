@@ -24,7 +24,7 @@ while True:
         
         try:
             L.load_session_from_file(USER)
-            print(f'Ben-vindo,{USER}!')
+            print(f'Bem-vindo,{USER}!')
     
         except FileNotFoundError:
             print('Erro: Não foi possível encontrar o login.')
@@ -35,11 +35,13 @@ while True:
 
     # MENU
         print(''' ========== INSTAGRAM INFO ==========
-        [1] - listar seguidores
+        [1] - listar seguidores (NÃO ESTÁ FUNCIONANDO)
         [2] - Informações do perfil 
-        [3] - Sair do programar
+        [3] - 
+        [4] - Sair do programar
         
         ''')
+        
         opecion = int(input('Escolha uma opção:'))
 
         #if opecion == 1:
@@ -71,9 +73,9 @@ while True:
         
         
         
-        #else: 
-           # print('Saindo...')
-            #break
+        elif opecion == 4: 
+            print('Saindo...')
+            break
     
     # opção 2
     if opecion == 2:
