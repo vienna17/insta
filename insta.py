@@ -4,6 +4,8 @@ import getpass
 
 
 # instância do Instaloader
+
+# dirname_pattern='foto' > para salvar a foto na pasta (fotos)
 L = Instaloader(dirname_pattern='fotos')
 
 # loop
