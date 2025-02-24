@@ -1,4 +1,5 @@
 from instaloader import Profile, Instaloader
+import time
 
 L = Instaloader(dirname_pattern='fotos')
 
@@ -24,7 +25,16 @@ opção = str(input('S/N: ')).lower()
 
 if opção == 's':
     # BAIXAR POST
-    print('EM MANUTENÇÃO...')
+    nu = int(input('QUANTAS FOTOS VOCÊ DESEJA BAIXAR? '))
+
+    for index,post in enumerate(perfil.get_posts()):
+        if index >= nu:
+            break
+        print(f'BAIXANDO FOTOS {index + 1}..')
+        L.download_post(post,target=perfil.username)
+        time.sleep(2)
+
+    print('DOWNLOADER CONCLUIDO! ')
 
 if opção == 'n':
     print('Operação cancelada.')
