@@ -4,15 +4,15 @@ import getpass
 
 
 # instância do Instaloader
-L = Instaloader()
+L = Instaloader(dirname_pattern='fotos')
 
 # loop
 while True:
 
     print(''' ========== INSTAGRAM INFO ==========
-[1] - Informações de um perfil (completa)
-[2] - Informações de um perfil (resumida)
-[3] - Sair do programar.
+[1] - INFORMAÇÕES DO PERFIL  (COM LOGIN)
+[2] - INFORMAÇÕES DO PERFIL  (SEM LOGIN)
+[3] - SAIR DO PROGRAMAR..
 ===============  FSX     =============
 
 ''')
@@ -36,19 +36,16 @@ while True:
 
     # MENU
         print(''' ========== INSTAGRAM INFO ==========
-        [1] - BAIXAR FOTOS DO PERFIL 
-        [2] - INFORMAÇÕES DO PERFIL
-        [3] - 
-        [4] - SAIR DO PROGRAMAR
+        [1] - INFORMAÇÕES DO PERFIL
+        [2] - BAIXAR FOTO DO PERFIL
+        [3] - SAIR DO PROGRAMAR..
         
         ''')
         
         opecion = int(input('Escolha uma opção:'))
-
-        #if opecion == 1:
         
     # FUNCIONANDO
-        if opecion == 2:
+        if opecion == 1:
             USERNAME = str(input('nome do usuário alvo: ')).strip().lower()
             profile = Profile.from_username(L.context, USERNAME)
             ID = profile.userid
@@ -71,12 +68,19 @@ while True:
             '\nFOLLOWERS:',FOLLOWERS,
             '\nFOLLOWING:',FOLLOWING,
             '\nPOSTS:',POSTS)
+            continue
         
-        
-        
-        elif opecion == 4: 
+        elif opecion == 2:
+            ALVO = input('NOME DO ALVO:')
+            perfil = Profile.from_username(L.context,ALVO)
+
+            L.download_profile(ALVO,profile_pic_only=True)
+            print('DOWNLOAD CONCLUÍDO! ')
+            continue
+
+        elif opecion == 3: 
             print('Saindo...')
-            break
+            continue
     
     # opção 2
     if opecion == 2:
@@ -103,9 +107,10 @@ while True:
         '\nFOLLOWING:',FOLLOWING,
         '\nPOSTS:',POSTS
         )
+        continue
     # opção 3   
     if opecion == 3:
         print('Saindo...')
         break
     
-print('Fim do programar...')    
+print('FIM DO PROGRAMAR...')    
