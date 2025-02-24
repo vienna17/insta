@@ -20,16 +20,17 @@ while True:
     
     # opção 1
     if opecion == 1:
-        USER = str(input('nome de usuário:')).strip().lower()
+        print('FAÇA O LOGIN..')
+        USER = str(input('NOME DE USÚARIO: ')).strip().lower()
         
+        # salvando login
         try:
             L.load_session_from_file(USER)
             print(f'Bem-vindo,{USER}!')
     
         except FileNotFoundError:
             print('Erro: Não foi possível encontrar o login.')
-
-            PASS = getpass.getpass('senha:').strip()
+            PASS = getpass.getpass('SENHA: ').strip()
             L.login(USER,PASS)
             L.save_session_to_file()
 
