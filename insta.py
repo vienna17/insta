@@ -36,10 +36,10 @@ while True:
 
     # MENU
         print(''' ========== INSTAGRAM INFO ==========
-        [1] - listar seguidores (NÃO ESTÁ FUNCIONANDO)
-        [2] - Informações do perfil 
+        [1] - BAIXAR FOTOS DO PERFIL 
+        [2] - INFORMAÇÕES DO PERFIL
         [3] - 
-        [4] - Sair do programar
+        [4] - SAIR DO PROGRAMAR
         
         ''')
         
