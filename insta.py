@@ -1,6 +1,10 @@
 from instaloader import Profile,Instaloader
 from time import sleep
 import getpass
+import sqlite3
+from datetime import datetime
+
+
 
 
 # instância do Instaloader
@@ -14,7 +18,8 @@ while True:
     print(''' ========== INSTAGRAM INFO ==========
 [1] - INFORMAÇÕES DO PERFIL  (COM LOGIN)
 [2] - INFORMAÇÕES DO PERFIL  (SEM LOGIN)
-[3] - SAIR DO PROGRAMAR..
+[3] - COMPARAR MUNDANÇAS DO PERFIL 
+[4] - SAIR DO PROGRAMAR..
 ===============  FSX     =============
 
 ''')
@@ -110,8 +115,40 @@ while True:
         '\nPOSTS:',POSTS
         )
         continue
-    # opção 3   
+    
+    
     if opecion == 3:
+
+        con = sqlite3.connect('instagram.progre...')
+    
+        cur = con.cursor()
+    
+
+        cur.execute(''' CREATE TABLE IF NOT EXISTS perfil(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE NOT NULL,
+        seguidores INTEGER,
+        seguindo INTEGER,
+        num_posts INTEGER,
+        foto_perfil TEXT,
+        data_coleta TEXT
+        )
+
+        ''')
+        con.commiti()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    # opção 4  
+    if opecion == 4:
         print('Saindo...')
         break
     
