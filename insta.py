@@ -3,6 +3,7 @@ from time import sleep
 import getpass
 import sqlite3
 from datetime import datetime
+import bcrypt
 
 
 
@@ -131,21 +132,68 @@ while True:
         seguindo INTEGER,
         num_posts INTEGER,
         foto_perfil TEXT,
+        bio TEXT,
+        private INTEGER,
         data_coleta TEXT
         )
 
         ''')
-        con.commiti()
+        con.commit()
+
+        # Dados do perfil 
+
+        L = Instaloader()
+
+        novoperfil= input('nome do perfil alvo: ')
+        profile = Profile.from_username(L.context,novoperfil)
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        bio = profile.biography
+        seguidores = profile.followers
+        seguindo = profile.followees
+        posts = profile.mediacount
+        private = profile.is_private
+        foto = profile_pic_only=True
+        data_atual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+        cur.execute('SELECT seguidores,seguindo,num_posts,bio,foto,private FROM perfil WHERE username = ?',(novoperfil,))
+        ultimo_registro = cur.fetchone()
+
+
+        if ultimo_registro:
+          ult_seguidores, ult_seguindo, ult_posts, ult_bio, ult_foto, ult_private = ultimo_registro
+
+
+        print('COMPARANDO O PERFIL: ')
+
+        if ult_seguidores != seguidores:
+            print(f'SEGUIDORES: {ult_seguidores} > {seguidores}')
+        if ult_seguindo != seguindo:
+            print(f'SEGUINDO: {ult_seguindo} > {seguindo}')
+        if ult_posts != posts:
+            print(f'POSTS: {ult_posts} > {posts}')
+        if ult_bio != bio:
+            print(f'BIO: {ult_bio} > {bio}')
+        if ult_private != private:
+            print(f'PRIVADO: {ult_private} > {private}')
+        if ult_foto != foto:
+            print(f'FOTO: {ult_foto} > {foto}')
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     # opção 4  
     if opecion == 4:
