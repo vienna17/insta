@@ -19,7 +19,7 @@ while True:
     print(''' ========== INSTAGRAM INFO ==========
 [1] - INFORMAÇÕES DO PERFIL  (COM LOGIN)
 [2] - INFORMAÇÕES DO PERFIL  (SEM LOGIN)
-[3] - COMPARAR MUNDANÇAS DO PERFIL 
+[3] - SALVA DADOS DO PERFIL PARA COMPARAR MUNDANÇAS 
 [4] - SAIR DO PROGRAMAR..
 ===============  FSX     =============
 
@@ -46,15 +46,15 @@ while True:
         print(''' ========== INSTAGRAM INFO ==========
         [1] - INFORMAÇÕES DO PERFIL
         [2] - BAIXAR FOTO DO PERFIL
-        [3] - SAIR DO PROGRAMAR..
+        [3] - VOLTAR..
         
         ''')
         
-        opecion = int(input('Escolha uma opção:'))
+        opecion = int(input('ESCOLHA UMA OPÇÃO:'))
         
     # FUNCIONANDO
         if opecion == 1:
-            USERNAME = str(input('nome do usuário alvo: ')).strip().lower()
+            USERNAME = str(input('NOME DO ALVO: ')).strip().lower()
             profile = Profile.from_username(L.context, USERNAME)
             ID = profile.userid
 
@@ -92,7 +92,7 @@ while True:
     
     # opção 2
     if opecion == 2:
-        USERNAME = str(input('nome do usuário alvo: ')).strip().lower()
+        USERNAME = str(input('NOME DO ALVO: ')).strip().lower()
         profile = Profile.from_username(L.context, USERNAME)
         ID = profile.userid
 
@@ -144,42 +144,50 @@ while True:
 
         L = Instaloader()
 
-        novoperfil= input('nome do perfil alvo: ')
+        novoperfil= input('NOME DO PERFIL ALVO: ').strip()
         profile = Profile.from_username(L.context,novoperfil)
     
-        bio = profile.biography
+        bio = profile.biography if profile.biography else ""
         seguidores = profile.followers
         seguindo = profile.followees
         posts = profile.mediacount
         private = profile.is_private
-        foto = profile_pic_only=True
+        foto = profile.profile_pic_url
         data_atual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
-        cur.execute('SELECT seguidores,seguindo,num_posts,bio,foto,private FROM perfil WHERE username = ?',(novoperfil,))
+        cur.execute('SELECT seguidores,seguindo,num_posts,bio,foto_perfil,private FROM perfil WHERE username = ?',(novoperfil,))
         ultimo_registro = cur.fetchone()
 
 
         if ultimo_registro:
-          ult_seguidores, ult_seguindo, ult_posts, ult_bio, ult_foto, ult_private = ultimo_registro
+          
+            ult_seguidores, ult_seguindo, ult_posts, ult_bio, ult_foto, ult_private = ultimo_registro
 
 
-        print('COMPARANDO O PERFIL: ')
+            print('COMPARANDO O PERFIL: ')
+            if ult_seguidores != seguidores:
+                print(f'SEGUIDORES: {ult_seguidores} > {seguidores}')
+            if ult_seguindo != seguindo:
+                print(f'SEGUINDO: {ult_seguindo} > {seguindo}')
+            if ult_posts != posts:
+                print(f'POSTS: {ult_posts} > {posts}')
+            if ult_bio != bio:
+                print(f'BIO: {ult_bio} > {bio}')
+            if ult_private == private:
+                print(f'PRIVADO: {ult_private} > {private}')
+            if ult_foto != foto:
+                print(f'FOTO ANTIGA: {ult_foto} FOTO ATUAL {foto}')
 
-        if ult_seguidores != seguidores:
-            print(f'SEGUIDORES: {ult_seguidores} > {seguidores}')
-        if ult_seguindo != seguindo:
-            print(f'SEGUINDO: {ult_seguindo} > {seguindo}')
-        if ult_posts != posts:
-            print(f'POSTS: {ult_posts} > {posts}')
-        if ult_bio != bio:
-            print(f'BIO: {ult_bio} > {bio}')
-        if ult_private != private:
-            print(f'PRIVADO: {ult_private} > {private}')
-        if ult_foto != foto:
-            print(f'FOTO: {ult_foto} > {foto}')
-
+        else:
+            cur.execute('''
+            INSERT INTO perfil (username,seguidores,seguindo,num_posts,foto_perfil,private,data_coleta)
+            VALUES (?,?,?,?,?,?,?)''',
+            (novoperfil,seguidores,seguindo,posts,foto,private,data_atual))
+            con.commit()
+            print(f"NOVO PERFIL SALVO NO BANCO DE DADOS! ")
         
+        con.close()
 
 
 
