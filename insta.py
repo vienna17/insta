@@ -24,7 +24,7 @@ while True:
 ===============  FSX     =============
 
 ''')
-    opecion = int(input('Escolha uma opção:'))
+    opecion = int(input('ESCOLHA UMA OPÇÃO:'))
     
     # opção 1
     if opecion == 1:
@@ -120,7 +120,7 @@ while True:
     
     if opecion == 3:
 
-        con = sqlite3.connect('instagram.progre...')
+        con = sqlite3.connect('Banco_de_dados')
     
         cur = con.cursor()
     
@@ -174,7 +174,7 @@ while True:
                 print(f'POSTS: {ult_posts} > {posts}')
             if ult_bio != bio:
                 print(f'BIO: {ult_bio} > {bio}')
-            if ult_private == private:
+            if ult_private != private:
                 print(f'PRIVADO: {ult_private} > {private}')
             if ult_foto != foto:
                 print(f'FOTO ANTIGA: {ult_foto} FOTO ATUAL {foto}')
