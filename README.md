@@ -1,13 +1,84 @@
-UMA FERRAMENTA PARA ANALISAR DADOS DE UM PERFIL ALVO DO INSTAGRAM.
+Instagram Profile Analyzer
 
-OBS: Está ferramenta ainda está em desenvolvimento, em breve serão adicionadas novas funcionalidades.
+Uma ferramenta para analisar dados de um perfil alvo do Instagram.
 
-FUNÇÕES:
+📌 Descrição
 
-para baixar uma foto de perfil de um usúario alvo é preciso fazer login;
+Esta ferramenta permite obter informações detalhadas de perfis do Instagram, com ou sem login.
+Também é possível comparar mudanças em perfis ao longo do tempo e salvar dados em um banco de dados SQLite.
 
-após fazer login o sistema vai salvar sua sessão de login para caso no futuro você volte a ultiliza - la, não precisar fazer login novamente, basta inserir o nome de usúario;
+⚠️ Aviso
 
-tem uma opção para pegar os dados sem precisar fazer login, ele trás:
+Esta ferramenta está em desenvolvimento e novas funcionalidades serão adicionadas em breve.
 
-nome ; id ; bio ; número de seguidores ; seguindo ; url da foto do perfil...
+🚀 Funcionalidades
+
+Obter informações do perfil (com ou sem login)
+
+Nome
+
+ID
+
+Biografia
+
+Número de seguidores
+
+Seguindo
+
+Quantidade de posts
+
+Conta privada ou pública
+
+URL da foto do perfil
+
+Baixar a foto do perfil (requer login)
+
+Salvar dados do perfil e comparar mudanças ao longo do tempo
+
+🛠️ Tecnologias utilizadas
+
+Python
+
+Instaloader
+
+SQLite3
+
+Bcrypt
+
+🔧 Instalação e uso
+
+Clone o repositório:
+
+git clone https://github.com/seu-usuario/instagram-profile-analyzer.git
+cd instagram-profile-analyzer
+
+Instale as dependências:
+
+pip install instaloader bcrypt
+
+Execute o script:
+
+python main.py
+
+📌 Exemplo de Uso
+
+Escolha uma das opções do menu:
+
+Obter informações de perfil
+
+Baixar foto do perfil
+
+Salvar perfil para comparações futuras
+
+Se optar por baixar a foto ou obter informações detalhadas, faça login.
+
+Caso já tenha um perfil salvo, a ferramenta comparará mudanças automaticamente.
+
+📜 Licença
+
+Este projeto está sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
+
+✨ Contribuição
+
+Sinta-se à vontade para sugerir melhorias ou abrir pull requests!
+
