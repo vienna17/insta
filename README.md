@@ -47,10 +47,12 @@ Bcrypt
 
 ## 🔧 Instalação e uso
 
-##  1 clone o repositório:
+##  clone o repositório:
 
-    xxxx
-
+    git clone https://github.com/vienna17/insta.git
+    
+## Entre no arquivo
+       cd insta.py
 
 ## Instale as dependências:
 
