@@ -11,7 +11,7 @@ Também é possível comparar mudanças em perfis ao longo do tempo e salvar dad
 
 Esta ferramenta está em desenvolvimento e novas funcionalidades serão adicionadas em breve.
 
-🚀 Funcionalidades
+## 🚀 Funcionalidades:
 
 Obter informações do perfil (com ou sem login)
 
@@ -35,7 +35,7 @@ Baixar a foto do perfil (requer login)
 
 Salvar dados do perfil e comparar mudanças ao longo do tempo
 
-🛠️ Tecnologias utilizadas
+## 🛠️ Tecnologias utilizadas
 
 Python
 
@@ -45,22 +45,22 @@ SQLite3
 
 Bcrypt
 
-🔧 Instalação e uso
+## 🔧 Instalação e uso
 
-Clone o repositório:
+##  1 clone o repositório:
 
-git clone https://github.com/seu-usuario/instagram-profile-analyzer.git
-cd instagram-profile-analyzer
+    xxxx
 
-Instale as dependências:
 
-pip install instaloader bcrypt
+## Instale as dependências:
 
-Execute o script:
+    pip install instaloader bcrypt
 
-python main.py
+## Execute o script:
 
-📌 Exemplo de Uso
+    python main.py
+
+## 📌 Exemplo de Uso:
 
 Escolha uma das opções do menu:
 
@@ -74,11 +74,8 @@ Se optar por baixar a foto ou obter informações detalhadas, faça login.
 
 Caso já tenha um perfil salvo, a ferramenta comparará mudanças automaticamente.
 
-📜 Licença
 
-Este projeto está sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
-
-✨ Contribuição
+## ✨ Contribuição
 
 Sinta-se à vontade para sugerir melhorias ou abrir pull requests!
 
